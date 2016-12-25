@@ -3,32 +3,40 @@
   <head>
     <meta charset="UTF-8">
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <script type="text/javascript">
       $(document).ready(function(){
         $('#clickON').click(function(){
           var a=new XMLHttpRequest();
-                                        a.open("GET", "pinon.php");
-                                        a.onreadystatechange=function(){
-                                                if(a.readyState==4){
-                                                        if(a.status == 200){
-                                                        }else alert("HTTP ERROR");
-
-                                                }
-                                        }
-                                        a.send();
-                                });
-                                $('#clickOFF').click(function(){
+              a.open("GET", "pinon.php");
+              /*a.onreadystatechange=function(){
+                 if(a.readyState==4){
+                    if(a.status == 200){
+                    }else alert("HTTP ERROR");
+                  }
+              }*/
+              a.send();
+        });
+        $('#clickOFF').click(function(){
           var a=new XMLHttpRequest();
-                                        a.open("GET", "pinoff.php");
-                                        a.onreadystatechange=function(){
-                                                if(a.readyState==4){
-                                                        if(a.status == 200){
-                                                        }else alert("HTTP ERROR");
-
-                                                }
-                                        }
-                                        a.send();
-                                });
+          a.open("GET", "pinoff.php");
+          /*a.onreadystatechange=function(){
+            if(a.readyState==4){
+              if(a.status == 200){
+              }else alert("HTTP ERROR");
+            }
+          }*/
+          a.send();
+        });
 
       });
     </script>
@@ -45,9 +53,12 @@
         $serverAddress = $_SERVER['HTTP_HOST'];
         $ipAddressArray= explode(':',$serverAddress);
         $ipAddressPi   = $ipAddressArray[0]; 
-        $portPi = 8160;
-        $url = "http://".$ipAddressPi.":".$portPi."/";
-        die($url);
+        $portPi        = 8160;
+        $url           = "http://".$ipAddressPi.":".$portPi."/";
+
+        //Getting users ip address, will store in the database later and let user know that the server connected with that ip address.
+
+        $userIp        = $_SERVER['REMOTE_ADDR'];
   ?>
   <?php
         /*
@@ -69,9 +80,10 @@
           print 'contact optimusDevOps for more details';
         }else{
           echo 'Hi: ' . '<b>'.$username.'</b>';
+          echo '<br>'."You're connected from ".'<b>'.$userIp.'</b>';
           print '<center> Welcome to Optimus Webstream </center>';?>
         <center>
-          <h1>OptimusLiveStream</h1>
+          <h1 style="color:blue;"">OptimusLiveStream</h1>
           <?php
             /*
             Browser details, getting the details for users browser
@@ -107,17 +119,29 @@
           <p>Coded By <b>Bilal Faisal</b> (TeamOptimus)</p>
         </center>
         <center>
-          <h2>**************</h2>
+          <h2> ********************** </h2>
           <!--LED Functionality | Test Run-->
-          <h1>LED Turn On And Turn Off</h1>
-          <label style = "color:red;">Turn ON(Pin 4):</label><button type="button" id="clickON">ON</button><br>
-          <label style = "color:red;">Turn OFF(Pin 4):</label><button type="button" id="clickOFF">OFF</button><br></center>
-          
-          <!--BOT Controls Here-->
-          <center><h1 style="color:green;">BOT Controls | Coming Soon Under Development</h1></center>
+          <h1 style="color:grey;"">RPi GPIO Checking</h1>
+          <button type="button" class="btn btn-success btn-sm" id="clickON">PIN4ON</button>
+          <button type="button" class="btn btn-danger btn-sm" id="clickOFF">PIN4OFF</button>
 
+          <!-- BOT Controls -->
+          <h1 style="color:green;">BOT Controls</h1>
+          <button type="button" class="btn btn-success btn-sm" id="forwardStart">Forward</button>
+          <button type="button" class="btn btn-danger btn-sm" id="forwardStop">ForwardStop</button> | 
+          <button type="button" class="btn btn-success btn-sm" id="backwardStart">Backward</button>
+          <button type="button" class="btn btn-danger btn-sm" id="backwardStop">BackwardStop</button> | 
+          <button type="button" class="btn btn-success btn-sm" id="turnLeft">Left</button>
+          <button type="button" class="btn btn-danger btn-sm" id="stopLeft">LeftStop</button> |
+          <button type="button" class="btn btn-success btn-sm" id="turnRight">Right</button>
+          <button type="button" class="btn btn-danger btn-sm" id="stopRight">RightStop</button>
+          </center>
+
+          <!--Upcoming Updates-->
+          <center><h1 style="color:red;">Head Movement Controls Coming Soon</h1></center>
+          <hr>
           <!--Disclaimer-->
-          <center><h5 style="color:red;">Made with Love From Team Optimus, All Right Reserved</h5></center>
+          <center><h5 style="color:red;">Made with Love From Team Optimus, All Rights Reserved</h5></center>
           <?php } ?>
   </body>
 </html>
