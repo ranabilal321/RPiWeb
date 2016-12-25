@@ -1,3 +1,4 @@
+<!--Temporary Controls, Embedded in main code no need, will transfer all the controls code here if necessary-->
 <!Doctype HTML>
 <html>
 	<head>
