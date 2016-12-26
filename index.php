@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8">
+
+    <!-- JQuery-->
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -15,29 +17,44 @@
 
     <script type="text/javascript">
       $(document).ready(function(){
-        $('#clickON').click(function(){
-          var a=new XMLHttpRequest();
-              a.open("GET", "pinon.php");
-              /*a.onreadystatechange=function(){
-                 if(a.readyState==4){
-                    if(a.status == 200){
-                    }else alert("HTTP ERROR");
-                  }
-              }*/
-              a.send();
-        });
-        $('#clickOFF').click(function(){
-          var a=new XMLHttpRequest();
-          a.open("GET", "pinoff.php");
-          /*a.onreadystatechange=function(){
+        /*$(".clickON, .forwardStart, .backwardStart, .turnLeft, .turnRight").click(function(){
+          var getId = $(this).attr('id');
+          var a     = new XMLHttpRequest();
+          a.open("GET", "pinon.php?getID="+getId);
+          a.onreadystatechange=function(){
             if(a.readyState==4){
               if(a.status == 200){
               }else alert("HTTP ERROR");
             }
-          }*/
+          }
           a.send();
         });
+        $(".clickOFF, .forwardStop, .backwardStop, .stopLeft, .stopRight").click(function(){
+          var getId = $(this).attr('id');
+          var a     = new XMLHttpRequest();
+          a.open("GET", "pinoff.php?getID="+getId);
+          a.onreadystatechange=function(){
+            if(a.readyState==4){
+              if(a.status == 200){
+              }else alert("HTTP ERROR");
+            }
+          }
+          a.send();
+        });*/
 
+        //Just everything in one file no need to create multiple code files, Sending everything in gpio.php, related gpio
+        $(".clickON, .forwardStart, .backwardStart, .turnLeft, .turnRight, .clickOFF, .forwardStop, .backwardStop, .stopLeft, .stopRight").click(function(){
+          var getId = $(this).attr('id');
+          var a     = new XMLHttpRequest();
+          a.open("GET", "gpio.php?getID="+getId);
+          a.onreadystatechange=function(){
+            if(a.readyState==4){
+              if(a.status == 200){
+              }else alert("HTTP ERROR");
+            }
+          }
+          a.send();
+        });
       });
     </script>
     <title>OptimusLiveStream</title>
@@ -57,14 +74,13 @@
         $url           = "http://".$ipAddressPi.":".$portPi."/";
 
         //Getting users ip address, will store in the database later and let user know that the server connected with that ip address.
-
         $userIp        = $_SERVER['REMOTE_ADDR'];
   ?>
   <?php
-        /*
-        User Authentication, default username and password would be optimus, however user can change default username and password later,
-        haven't created the configuration file yet.
-        */
+      /*
+      User Authentication, default username and password would be optimus, however user can change default username and password later,
+      haven't created the configuration file yet.
+      */
         $loginSuccessful = false;
         if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])){
           $username = $_SERVER['PHP_AUTH_USER'];
@@ -119,26 +135,26 @@
           <p>Coded By <b>Bilal Faisal</b> (TeamOptimus)</p>
         </center>
         <center>
-          <h2> ********************** </h2>
           <!--LED Functionality | Test Run-->
           <h1 style="color:grey;"">RPi GPIO Checking</h1>
-          <button type="button" class="btn btn-success btn-sm" id="clickON">PIN4ON</button>
-          <button type="button" class="btn btn-danger btn-sm" id="clickOFF">PIN4OFF</button>
+          <p>Default Led at pin 4</p>
+          <button type="button" class="btn btn-success btn-sm clickON" id="clickON">ON</button>
+          <button type="button" class="btn btn-danger btn-sm clickOFF" id="clickOFF">OFF</button>
 
           <!-- BOT Controls -->
           <h1 style="color:green;">BOT Controls</h1>
-          <button type="button" class="btn btn-success btn-sm" id="forwardStart">Forward</button>
-          <button type="button" class="btn btn-danger btn-sm" id="forwardStop">ForwardStop</button> | 
-          <button type="button" class="btn btn-success btn-sm" id="backwardStart">Backward</button>
-          <button type="button" class="btn btn-danger btn-sm" id="backwardStop">BackwardStop</button> | 
-          <button type="button" class="btn btn-success btn-sm" id="turnLeft">Left</button>
-          <button type="button" class="btn btn-danger btn-sm" id="stopLeft">LeftStop</button> |
-          <button type="button" class="btn btn-success btn-sm" id="turnRight">Right</button>
-          <button type="button" class="btn btn-danger btn-sm" id="stopRight">RightStop</button>
+          <button type="button" class="btn btn-success btn-sm forwardStart"   id="forwardStart">Forward</button>
+          <button type="button" class="btn btn-danger btn-sm forwardStop"     id="forwardStop">ForwardStop</button> | 
+          <button type="button" class="btn btn-success btn-sm backwardStart"  id="backwardStart">Backward</button>
+          <button type="button" class="btn btn-danger btn-sm backwardStop"    id="backwardStop">BackwardStop</button> | 
+          <button type="button" class="btn btn-success btn-sm turnLeft"       id="turnLeft">Left</button>
+          <button type="button" class="btn btn-danger btn-sm stopLeft"        id="stopLeft">LeftStop</button> |
+          <button type="button" class="btn btn-success btn-sm turnRight"      id="turnRight">Right</button>
+          <button type="button" class="btn btn-danger btn-sm stopRight"       id="stopRight">RightStop</button>
           </center>
 
           <!--Upcoming Updates-->
-          <center><h1 style="color:red;">Head Movement Controls Coming Soon</h1></center>
+          <center><h1 style="color:red;">Head Movement Controls | Coming Soon | Under Development</h1></center>
           <hr>
           <!--Disclaimer-->
           <center><h5 style="color:red;">Made with Love From Team Optimus, All Rights Reserved</h5></center>

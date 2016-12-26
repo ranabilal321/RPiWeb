@@ -1,8 +1,36 @@
 <?php
 	/*
-		Pin On for mode 4, Temporary.
+		Sending the on request to pins
 	*/
+		//Getting the button id and storing it in $getId
+		$getId = $_GET['getID'];
 
-		system("gpio -g mode 4 out");
-		system("gpio -g write 4 1");
+		//Temporarily selecting the pins.
+		if($getId == 'clickON'){
+			echo "hey i am pin 4 mode on";
+			system("gpio -g mode 4 out");
+			system("gpio -g write 4 1");
+
+		}elseif($getId == 'forwardStart'){
+			echo "hey i am pin 17, I'll be forward start pin.";
+			system("gpio -g mode 17 out");
+			system("gpio -g write 17 1");
+
+		}elseif($getId == 'backwardStart'){
+			echo "hey i am pin 22, I'll be backward start pin.";
+			system("gpio -g mode 22 out");
+			system("gpio -g write 22 1");
+
+		}elseif($getId == 'turnLeft'){
+			echo "hey i am pin 27, I'll be turnLeft start pin.";
+			system("gpio -g mode 27 out");
+			system("gpio -g write 27 1");
+
+		}elseif($getId == 'turnRight'){
+			echo "hey i am pin 26, I'll be turnRight start pin.";
+			system("gpio -g mode 26 out");
+			system("gpio -g write 26 1");
+		}else{
+			echo "There is an error with your selection";
+		}
 ?>
