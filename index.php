@@ -99,7 +99,7 @@
           echo '<br>'."You're connected from ".'<b>'.$userIp.'</b>';
           print '<center> Welcome to Optimus Webstream </center>';?>
         <center>
-          <h1 style="color:blue;"">OptimusLiveStream</h1>
+          <h2 style="color:blue;"">OptimusLiveStream</h2>
           <?php
             /*
             Browser details, getting the details for users browser
@@ -119,18 +119,27 @@
 
             //Displaying error messages to user if his browser is not firefox and vlc installed.
             if($browser!= 'Mozilla Firefox'){
-              print '<h3 style="color:red;">'.'<p>Sorry youre using a browser that stream doesnt work,</p> <p>please switch to Firefox for stream to work, and you must have vlc plugin installed for firefox.</p>'.'</h3>';
-            }
-          ?>
+              print '<h4 style="color:red;">'.'<p>Sorry youre using a browser that stream doesnt work,</p> <p>please switch to Firefox for stream to work, and you must have vlc plugin installed for firefox.</p>'.'</h4>';
+              echo '<h5>' . '<b>In the meanwhile learn something about raspberry pi, here is a youtube video for you.</b>' . '</h5>';
+              ?>
+              <iframe width="640" height="360"
+                src="https://www.youtube.com/embed/5jA8wYqQLBU">
+              </iframe>
+            <?php }elseif($browser == 'Mozilla Firefox'){?>
+              <!-- Check to see if it works and will remove custom code. -->
+              <embed id="vlcEmb" type="application/x-google-vlc-plugin" version="VideoLAN.VLCPlugin.2" autoplay="yes" loop="no" width="640" height="320" target="<?php echo $url; ?>"></embed>
+              <?php } ?>
+          </br>
           <!--Streaming Interface | Using Vlc Plugin Right Now-->
-          <OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" codebase="http://downloads.videolan.org/pub/videolan/vlc/latest/win32/axvlc.cab"
+          <!-- <OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" codebase="http://downloads.videolan.org/pub/videolan/vlc/latest/win32/axvlc.cab"
                      width="800" height="600" id="vlc" events="True">
             <param name="ShowDisplay" value="True" />
             <param name="AutoLoop" value="False" />
             <param name="AutoPlay" value="True" />
             <embed id="vlcEmb" type="application/x-google-vlc-plugin" version="VideoLAN.VLCPlugin.2" autoplay="yes" loop="no" width="640" height="320"
                    target="<?php echo $url; ?>"></embed>
-          </OBJECT>
+          </OBJECT>-->
+
           <!--Coders Name Just Temporary-->
           <p>Coded By <b>Bilal Faisal</b> (TeamOptimus)</p>
         </center>
