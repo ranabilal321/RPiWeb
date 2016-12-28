@@ -20,7 +20,7 @@
       Getting Button ids and sending it to gpio.php, where gpio handles the value related to pins bot controls, head movements and other stuff.
     */
       $(document).ready(function(){
-        $(".clickON, .forwardStart, .backwardStart, .turnLeft, .turnRight, .clickOFF, .forwardStop, .backwardStop, .stopLeft, .stopRight").click(function(){
+        $(".clickON, .forwardStart, .backwardStart, .turnLeft, .turnRight, .clickOFF, .forwardStop, .backwardStop, .stopLeft, .stopRight, .moveLeft, .moveLeftBack, .moveRight, .moveRightBack").click(function(){
           var getId = $(this).attr('id');
           var a     = new XMLHttpRequest();
           a.open("GET", "gpio.php?getID="+getId);
@@ -34,6 +34,7 @@
         });
       });
     </script>
+    
     <title>OptimusLiveStream</title>
   </head>
   <body>
@@ -76,10 +77,9 @@
         }else{
           echo 'Hi: ' . '<b>'.$username.'</b>';
           echo '<br>'."You're connected from ".'<b>'.$userIp.'</b>';
-          print '<center> Welcome to Optimus Webstream </center>';
     ?>
     <center>
-      <h2 style="color:blue;"">OptimusLiveStream</h2>
+      <h2 style="color:blue;"">Welcome to Optimus Live Camera Stream</h2>
     <?php
       /*
         Browser details, getting the details for users browser
@@ -121,13 +121,13 @@
     </center>
     <center>
       <!--LED Functionality | Test Run-->
-      <h1 style="color:grey;"">RPi GPIO Checking</h1>
+      <h3 style="color:grey;"">RPi GPIO Checking</h3>
       <p>Default Led at pin 4</p>
       <button type="button" class="btn btn-success btn-sm clickON" id="clickON">ON</button>
       <button type="button" class="btn btn-danger btn-sm clickOFF" id="clickOFF">OFF</button>
 
       <!-- BOT Controls -->
-      <h1 style="color:green;">BOT Controls</h1>
+      <h3 style="color:green;">BOT Controls</h3>
       <button type="button" class="btn btn-success btn-sm forwardStart"   id="forwardStart">Forward</button>
       <button type="button" class="btn btn-danger btn-sm forwardStop"     id="forwardStop">ForwardStop</button> | 
       <button type="button" class="btn btn-success btn-sm backwardStart"  id="backwardStart">Backward</button>
@@ -136,10 +136,14 @@
       <button type="button" class="btn btn-danger btn-sm stopLeft"        id="stopLeft">LeftStop</button> |
       <button type="button" class="btn btn-success btn-sm turnRight"      id="turnRight">Right</button>
       <button type="button" class="btn btn-danger btn-sm stopRight"       id="stopRight">RightStop</button>
-    </center>
 
-      <!--Upcoming Updates-->
-      <center><h1 style="color:red;">Head Movement Controls | Coming Soon | Under Development</h1></center>
+      <h3 style="color:blue;">Head Movements Controls</h3>
+      <button type="button" class="btn btn-success btn-sm moveLeft"       id="moveLeft">MoveLeft</button>
+      <button type="button" class="btn btn-danger btn-sm moveLeftBack"    id="moveLeftBack">MoveLeftBack</button> | 
+      <button type="button" class="btn btn-success btn-sm moveRight"      id="moveRight">MoveRight</button>
+      <button type="button" class="btn btn-danger btn-sm moveRightBack"   id="moveRightBack">MoveRightBack</button>
+
+    </center>
       <hr>
       <!--Disclaimer-->
       <center><h5 style="color:red;">Made with Love From Team Optimus, All Rights Reserved</h5></center>

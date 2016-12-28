@@ -56,6 +56,26 @@
 			system("gpio -g mode 26 out");
 			system("gpio -g write 26 0");
 
+		}elseif($getId == 'moveLeft'){
+			echo "hey i am pin 19, I'll be moveLeft pin.";
+			system("gpio -g mode 19 out");
+			system("gpio -g write 19 1");
+
+		}elseif($getId == 'moveLeftBack'){
+			echo "hey i am pin 19, I'll be moveLeftBack pin.";
+			system("gpio -g mode 19 out");
+			system("gpio -g write 19 0");
+
+		}elseif($getId == 'moveRight'){
+			echo "hey i am pin 13, I'll be moveRight pin.";
+			system("gpio -g mode 13 out");
+			system("gpio -g write 13 0");
+
+		}elseif($getId == 'moveRightBack'){
+			echo "hey i am pin 13, I'll be moveRightBack pin.";
+			system("gpio -g mode 13 out");
+			system("gpio -g write 13 0");
+
 		}
 		else{
 			echo "There is an error with your selection";
