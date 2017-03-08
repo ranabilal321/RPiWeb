@@ -20,7 +20,7 @@
       Getting Button ids and sending it to gpio.php, where gpio handles the value related to pins bot controls, head movements and other stuff.
     */
       $(document).ready(function(){
-        $(".clickON, .forwardStart, .backwardStart, .turnLeft, .turnRight, .clickOFF, .forwardStop, .backwardStop, .stopLeft, .stopRight, .moveLeft, .moveLeftBack, .moveRight, .moveRightBack").click(function(){
+        $(".clickON, .forwardStart, .backwardStart, .turnLeft, .turnRight, .clickOFF, .forwardStop, .backwardStop, .stopLeft, .stopRight, .moveLeft, .moveLeftBack, .moveRight, .moveRightBack, .halt").click(function(){
           var getId = $(this).attr('id');
           var a     = new XMLHttpRequest();
           a.open("GET", "gpio.php?getID="+getId);
@@ -127,6 +127,7 @@
       <button type="button" class="btn btn-danger btn-sm clickOFF" id="clickOFF">OFF</button>
 
       <!-- BOT Controls -->
+      <!-- 
       <h3 style="color:green;">BOT Controls</h3>
       <button type="button" class="btn btn-success btn-sm forwardStart"   id="forwardStart">Forward</button>
       <button type="button" class="btn btn-danger btn-sm forwardStop"     id="forwardStop">ForwardStop</button> | 
@@ -142,7 +143,14 @@
       <button type="button" class="btn btn-danger btn-sm moveLeftBack"    id="moveLeftBack">MoveLeftBack</button> | 
       <button type="button" class="btn btn-success btn-sm moveRight"      id="moveRight">MoveRight</button>
       <button type="button" class="btn btn-danger btn-sm moveRightBack"   id="moveRightBack">MoveRightBack</button>
-
+      -->
+      <h3 style="color:green;">Controls H-Bridge</h3>
+      <button type="button" class="btn btn-success btn-sm forwardStart"   id="forwardStart">Forward</button> 
+      <button type="button" class="btn btn-success btn-sm backwardStart"  id="backwardStart">Backward</button> 
+      <button type="button" class="btn btn-success btn-sm turnLeft"       id="turnLeft">Left</button>
+      <button type="button" class="btn btn-success btn-sm turnRight"      id="turnRight">Right</button>
+      <hr>
+      <button type="button" class="btn btn-danger btn-sm halt"            id="halt">HaltAll</button>
     </center>
       <hr>
       <!--Disclaimer-->

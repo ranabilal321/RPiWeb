@@ -12,26 +12,45 @@
 			system("gpio -g write 4 1");
 
 		}elseif($getId == 'forwardStart'){
-			echo "hey i am pin 17, I'll be forward start pin.";
-			system("gpio -g mode 17 out");
-			system("gpio -g write 17 1");
+			echo "hey i am pin 18(1A),24(2A) I'll be forward start pin. before turning on these pins all pins should be off first";
+			system("gpio -g mode 18 out");
+			system("gpio -g write 18 1");
+			system("gpio -g mode 24 out");
+			system("gpio -g write 24 1");
 
 		}elseif($getId == 'backwardStart'){
-			echo "hey i am pin 22, I'll be backward start pin.";
+			echo "hey i am pin 22(1B),25(2B) I'll be backward start pin. before turning on these pins all pins should be off first";
 			system("gpio -g mode 22 out");
 			system("gpio -g write 22 1");
+			system("gpio -g mode 25 out");
+			system("gpio -g write 25 1");
 
 		}elseif($getId == 'turnLeft'){
-			echo "hey i am pin 27, I'll be turnLeft start pin.";
-			system("gpio -g mode 27 out");
-			system("gpio -g write 27 1");
+			echo "hey i am pin 22(1B),24(2A) I'll be turnLeft start pin. before turning on these pins all pins should be off first";
+			system("gpio -g mode 22 out");
+			system("gpio -g write 22 1");
+			system("gpio -g mode 24 out");
+			system("gpio -g write 24 1");
 
 		}elseif($getId == 'turnRight'){
-			echo "hey i am pin 26, I'll be turnRight start pin.";
-			system("gpio -g mode 26 out");
-			system("gpio -g write 26 1");
+			echo "hey i am pin 18(1A),25(2B) I'll be turnRight start pin. before turning on these pins all pins should be off first";
+			system("gpio -g mode 18 out");
+			system("gpio -g write 18 1");
+			system("gpio -g mode 25 out");
+			system("gpio -g write 25 1");
 			
-		}elseif($getId == 'clickOFF'){
+		}elseif($getId == 'halt'){
+			echo "I'll be halt all pin. this will stop all pins to operate";
+			system("gpio -g mode 18 out");
+			system("gpio -g write 18 0");
+			system("gpio -g mode 22 out");
+			system("gpio -g write 22 0");
+			system("gpio -g mode 24 out");
+			system("gpio -g write 24 0");
+			system("gpio -g mode 25 out");
+			system("gpio -g write 25 0");
+			
+		}/*elseif($getId == 'clickOFF'){
 			echo "hey i am pin 4 mode off";
 			system("gpio -g mode 4 out");
 			system("gpio -g write 4 0");
@@ -76,7 +95,7 @@
 			system("gpio -g mode 13 out");
 			system("gpio -g write 13 0");
 
-		}
+		}*/
 		else{
 			echo "There is an error with your selection";
 		}
