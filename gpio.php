@@ -5,98 +5,81 @@
 		//Getting the button id and storing it in $getId
 		$getId = $_GET['getID'];
 
-		//Temporarily selecting the pins.
-		if($getId == 'clickON'){
-			echo "hey i am pin 4 mode on";
-			system("gpio -g mode 4 out");
-			system("gpio -g write 4 1");
+		//Function for Halt Operations
 
-		}elseif($getId == 'forwardStart'){
-			echo "hey i am pin 18(1A),24(2A) I'll be forward start pin. before turning on these pins all pins should be off first";
+		function haltAll(){
+			//Halt All Pin Operations
+			echo "Halt All";
+
 			system("gpio -g mode 18 out");
-			system("gpio -g write 18 1");
+			system("gpio -g mode 22 out");
 			system("gpio -g mode 24 out");
+			system("gpio -g mode 25 out");
+			system("gpio -g write 18 0");
+			system("gpio -g write 22 0");
+			system("gpio -g write 24 0");
+			system("gpio -g write 25 0");
+		}
+
+		if($getId == 'forwardStart'){
+
+			//Before Forward Start All Pins Should Halt
+			haltAll();
+
+			echo "Forward Pins : 18,24";
+
+			//Forward Start Pin Operations
+			system("gpio -g mode 18 out");
+			system("gpio -g mode 24 out");
+			system("gpio -g write 18 1");
 			system("gpio -g write 24 1");
 
 		}elseif($getId == 'backwardStart'){
-			echo "hey i am pin 22(1B),25(2B) I'll be backward start pin. before turning on these pins all pins should be off first";
+
+			//Before Backward Start All Pins Should Halt
+			haltAll();
+
+			echo "Backward Pins : 22,25";
+
+			//Backward Start Pin Operations
 			system("gpio -g mode 22 out");
-			system("gpio -g write 22 1");
 			system("gpio -g mode 25 out");
+			system("gpio -g write 22 1");
 			system("gpio -g write 25 1");
 
 		}elseif($getId == 'turnLeft'){
-			echo "hey i am pin 22(1B),24(2A) I'll be turnLeft start pin. before turning on these pins all pins should be off first";
+
+			//Before Backward Start All Pins Should Halt
+			haltAll();
+
+			echo "Left Pins : 22,24";
+
+			//Turn Left Pin Operations
 			system("gpio -g mode 22 out");
-			system("gpio -g write 22 1");
 			system("gpio -g mode 24 out");
+			system("gpio -g write 22 1");
 			system("gpio -g write 24 1");
 
 		}elseif($getId == 'turnRight'){
-			echo "hey i am pin 18(1A),25(2B) I'll be turnRight start pin. before turning on these pins all pins should be off first";
+
+			//Before Backward Start All Pins Should Halt
+			haltAll();
+
+			echo "Right Pins : 18,25";
+
+			//Turn Right Pin Operations
 			system("gpio -g mode 18 out");
-			system("gpio -g write 18 1");
 			system("gpio -g mode 25 out");
+			system("gpio -g write 18 1");
 			system("gpio -g write 25 1");
 			
 		}elseif($getId == 'halt'){
-			echo "I'll be halt all pin. this will stop all pins to operate";
-			system("gpio -g mode 18 out");
-			system("gpio -g write 18 0");
-			system("gpio -g mode 22 out");
-			system("gpio -g write 22 0");
-			system("gpio -g mode 24 out");
-			system("gpio -g write 24 0");
-			system("gpio -g mode 25 out");
-			system("gpio -g write 25 0");
-			
-		}/*elseif($getId == 'clickOFF'){
-			echo "hey i am pin 4 mode off";
-			system("gpio -g mode 4 out");
-			system("gpio -g write 4 0");
-
-		}elseif($getId == 'forwardStop'){
-			echo "hey i am pin 17, I'll be forward stop pin.";
-			system("gpio -g mode 17 out");
-			system("gpio -g write 17 0");
-
-		}elseif($getId == 'backwardStop'){
-			echo "hey i am pin 22, I'll be backward stop pin.";
-			system("gpio -g mode 22 out");
-			system("gpio -g write 22 0");
-
-		}elseif($getId == 'stopLeft'){
-			echo "hey i am pin 27, I'll be turnLeft stop pin.";
-			system("gpio -g mode 27 out");
-			system("gpio -g write 27 0");
-
-		}elseif($getId == 'stopRight'){
-			echo "hey i am pin 26, I'll be turnRight stop pin.";
-			system("gpio -g mode 26 out");
-			system("gpio -g write 26 0");
-
-		}elseif($getId == 'moveLeft'){
-			echo "hey i am pin 19, I'll be moveLeft pin.";
-			system("gpio -g mode 19 out");
-			system("gpio -g write 19 1");
-
-		}elseif($getId == 'moveLeftBack'){
-			echo "hey i am pin 19, I'll be moveLeftBack pin.";
-			system("gpio -g mode 19 out");
-			system("gpio -g write 19 0");
-
-		}elseif($getId == 'moveRight'){
-			echo "hey i am pin 13, I'll be moveRight pin.";
-			system("gpio -g mode 13 out");
-			system("gpio -g write 13 0");
-
-		}elseif($getId == 'moveRightBack'){
-			echo "hey i am pin 13, I'll be moveRightBack pin.";
-			system("gpio -g mode 13 out");
-			system("gpio -g write 13 0");
-
-		}*/
+			//Halt All Function Call Here.
+			haltAll();
+						
+		}
 		else{
+			//If there is an exception
 			echo "There is an error with your selection";
 		}
 ?>

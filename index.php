@@ -121,10 +121,12 @@
     </center>
     <center>
       <!--LED Functionality | Test Run-->
+      <!--
       <h3 style="color:grey;"">RPi GPIO Checking</h3>
       <p>Default Led at pin 4</p>
       <button type="button" class="btn btn-success btn-sm clickON" id="clickON">ON</button>
       <button type="button" class="btn btn-danger btn-sm clickOFF" id="clickOFF">OFF</button>
+      -->
 
       <!-- BOT Controls -->
       <!-- 
@@ -145,10 +147,11 @@
       <button type="button" class="btn btn-danger btn-sm moveRightBack"   id="moveRightBack">MoveRightBack</button>
       -->
       <h3 style="color:green;">Controls H-Bridge</h3>
-      <button type="button" class="btn btn-success btn-sm forwardStart"   id="forwardStart">Forward</button> 
-      <button type="button" class="btn btn-success btn-sm backwardStart"  id="backwardStart">Backward</button> 
-      <button type="button" class="btn btn-success btn-sm turnLeft"       id="turnLeft">Left</button>
-      <button type="button" class="btn btn-success btn-sm turnRight"      id="turnRight">Right</button>
+      <button type="button" class="btn btn-success btn-sm forwardStart"   id="forwardStart">FWD</button> 
+      <hr>
+      <button type="button" class="btn btn-success btn-sm turnLeft"       id="turnLeft">LFT</button>
+      <button type="button" class="btn btn-success btn-sm backwardStart"  id="backwardStart">BWD</button> 
+      <button type="button" class="btn btn-success btn-sm turnRight"      id="turnRight">RGT</button>
       <hr>
       <button type="button" class="btn btn-danger btn-sm halt"            id="halt">HaltAll</button>
     </center>
