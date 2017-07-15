@@ -23,7 +23,7 @@
         $(".clickON, .forwardStart, .backwardStart, .turnLeft, .turnRight, .clickOFF, .forwardStop, .backwardStop, .stopLeft, .stopRight, .moveLeft, .moveLeftBack, .moveRight, .moveRightBack, .halt").click(function(){
           var getId = $(this).attr('id');
           var a     = new XMLHttpRequest();
-          a.open("GET", "gpio.py?getID="+getId);
+          a.open("GET", "gpio.php?getID="+getId);
           a.onreadystatechange=function(){
             if(a.readyState==4){
               if(a.status == 200){
