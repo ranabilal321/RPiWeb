@@ -1,85 +1,57 @@
 <?php
-	/*
-		Sending the on request to pins
-	*/
-		//Getting the button id and storing it in $getId
-		$getId = $_GET['getID'];
+	//Getting the button id and storing it in $getId
+	$getId = $_GET['getID'];
 
-		//Function for Halt Operations
+	if($getId == 'backward'){
+		echo "Backward functionality to operate";
 
-		function haltAll(){
-			//Halt All Pin Operations
-			echo "Halt All";
+		//Executing the python code in terminal for backward request
+		system("python pyphp.py b");
+		echo "Done! Backward";
 
-			system("gpio -g mode 18 out");
-			system("gpio -g mode 22 out");
-			system("gpio -g mode 24 out");
-			system("gpio -g mode 25 out");
-			system("gpio -g write 18 0");
-			system("gpio -g write 22 0");
-			system("gpio -g write 24 0");
-			system("gpio -g write 25 0");
-		}
+	}elseif($getId == 'forward'){
+		echo "Forward functionality to operate";
 
-		if($getId == 'forwardStart'){
+		//Executing the python code in terminal for forward request
+		system("python pyphp.py f");
+		echo "Done! Forward";
 
-			//Before Forward Start All Pins Should Halt
-			haltAll();
+	}elseif($getId == 'left'){
+		echo "Turn left functionality to operate";
 
-			echo "Forward Pins : 18,24";
+		//Executing the python code in terminal for left request
+		system("python pyphp.py l");
+		echo "Done! Left";
 
-			//Forward Start Pin Operations
-			system("gpio -g mode 18 out");
-			system("gpio -g mode 24 out");
-			system("gpio -g write 18 1");
-			system("gpio -g write 24 1");
+	}elseif($getId == 'right'){
+		echo "Turn right functionality to operate";
 
-		}elseif($getId == 'backwardStart'){
+		//Executing the python code in terminal for right request
+		system("python pyphp.py r");
+		echo "Done! Right";
+		
+	}elseif($getId == 'halt'){
+		echo "Halting every operations";
 
-			//Before Backward Start All Pins Should Halt
-			haltAll();
+		//Executing the python code in terminal for halt request
+		system("python pyphp.py h");
+		echo "Done! Halt";
 
-			echo "Backward Pins : 22,25";
+	}elseif($getId == 'up'){
+		echo "Head move up functionality to operate";
+		//Executing the python code in terminal for head up request
+		system("python pyphp.py u");
+		echo "Done! Head up";
 
-			//Backward Start Pin Operations
-			system("gpio -g mode 22 out");
-			system("gpio -g mode 25 out");
-			system("gpio -g write 22 1");
-			system("gpio -g write 25 1");
+	}elseif($getId == 'down'){
+		echo "Head move down functionality to operate";
 
-		}elseif($getId == 'turnLeft'){
+		//Executing the python code in terminal for head down request
+		system("python pyphp.py d");
+		echo "Done! Head down";
 
-			//Before Backward Start All Pins Should Halt
-			haltAll();
-
-			echo "Left Pins : 22,24";
-
-			//Turn Left Pin Operations
-			system("gpio -g mode 22 out");
-			system("gpio -g mode 24 out");
-			system("gpio -g write 22 1");
-			system("gpio -g write 24 1");
-
-		}elseif($getId == 'turnRight'){
-
-			//Before Backward Start All Pins Should Halt
-			haltAll();
-
-			echo "Right Pins : 18,25";
-
-			//Turn Right Pin Operations
-			system("gpio -g mode 18 out");
-			system("gpio -g mode 25 out");
-			system("gpio -g write 18 1");
-			system("gpio -g write 25 1");
-			
-		}elseif($getId == 'halt'){
-			//Halt All Function Call Here.
-			haltAll();
-						
-		}
-		else{
-			//If there is an exception
-			echo "There is an error with your selection";
-		}
+	}else{
+		//If there is an exception
+		echo "There is an error with your selection";
+	}
 ?>

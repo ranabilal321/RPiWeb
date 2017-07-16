@@ -20,10 +20,10 @@
       Getting Button ids and sending it to gpio.php, where gpio handles the value related to pins bot controls, head movements and other stuff.
     */
       $(document).ready(function(){
-        $(".clickON, .forwardStart, .backwardStart, .turnLeft, .turnRight, .clickOFF, .forwardStop, .backwardStop, .stopLeft, .stopRight, .moveLeft, .moveLeftBack, .moveRight, .moveRightBack, .halt").click(function(){
+        $(".forward, .backward, .left, .right, .up, .down, .halt").click(function(){
           var getId = $(this).attr('id');
           var a     = new XMLHttpRequest();
-          a.open("GET", "gpio.py?getID="+getId);
+          a.open("GET", "gpio.php?getID="+getId);
           a.onreadystatechange=function(){
             if(a.readyState==4){
               if(a.status == 200){
@@ -35,7 +35,7 @@
       });
     </script>
     
-    <title>OptimusLiveStream</title>
+    <title>Optimus|The WatchBot LiveStream</title>
   </head>
   <body>
     <?php
@@ -75,11 +75,10 @@
           print 'you need valid login details to access optimus web stream. ';
           print 'contact optimusDevOps for more details';
         }else{
-          echo 'Hi: ' . '<b>'.$username.'</b>';
-          echo '<br>'."You're connected from ".'<b>'.$userIp.'</b>';
+          echo 'Hi: ' . '<b>'.$username. ' | '."You're connected from ".'<b>'.$userIp.'</b>';
     ?>
     <center>
-      <h2 style="color:blue;"">Welcome to Optimus Live Camera Stream</h2>
+      <h4 style="color:blue;"">Welcome to Optimus Live Camera Stream</h4>
     <?php
       /*
         Browser details, getting the details for users browser
@@ -116,48 +115,24 @@
       } 
     ?>
       </br>
-      <!--Coders Name Just Temporary-->
-      <p>Coded By <b>Bilal Faisal</b> (TeamOptimus)</p>
     </center>
+
+    <!-- Robot Controls, Robot Head Movement Controls, Halt-->
     <center>
-      <!--LED Functionality | Test Run-->
-      <!--
-      <h3 style="color:grey;"">RPi GPIO Checking</h3>
-      <p>Default Led at pin 4</p>
-      <button type="button" class="btn btn-success btn-sm clickON" id="clickON">ON</button>
-      <button type="button" class="btn btn-danger btn-sm clickOFF" id="clickOFF">OFF</button>
-      -->
-
-      <!-- BOT Controls -->
-      <!-- 
-      <h3 style="color:green;">BOT Controls</h3>
-      <button type="button" class="btn btn-success btn-sm forwardStart"   id="forwardStart">Forward</button>
-      <button type="button" class="btn btn-danger btn-sm forwardStop"     id="forwardStop">ForwardStop</button> | 
-      <button type="button" class="btn btn-success btn-sm backwardStart"  id="backwardStart">Backward</button>
-      <button type="button" class="btn btn-danger btn-sm backwardStop"    id="backwardStop">BackwardStop</button> | 
-      <button type="button" class="btn btn-success btn-sm turnLeft"       id="turnLeft">Left</button>
-      <button type="button" class="btn btn-danger btn-sm stopLeft"        id="stopLeft">LeftStop</button> |
-      <button type="button" class="btn btn-success btn-sm turnRight"      id="turnRight">Right</button>
-      <button type="button" class="btn btn-danger btn-sm stopRight"       id="stopRight">RightStop</button>
-
-      <h3 style="color:blue;">Head Movements Controls</h3>
-      <button type="button" class="btn btn-success btn-sm moveLeft"       id="moveLeft">MoveLeft</button>
-      <button type="button" class="btn btn-danger btn-sm moveLeftBack"    id="moveLeftBack">MoveLeftBack</button> | 
-      <button type="button" class="btn btn-success btn-sm moveRight"      id="moveRight">MoveRight</button>
-      <button type="button" class="btn btn-danger btn-sm moveRightBack"   id="moveRightBack">MoveRightBack</button>
-      -->
-      <h3 style="color:green;">Controls H-Bridge</h3>
-      <button type="button" class="btn btn-success btn-sm forwardStart"   id="forwardStart">FWD</button> 
+      <h5 style="color:green;">Robot Controls</h5>
+      <button type="button" class="btn btn-success btn-sm left"      id="left">LFT</button>
+      <button type="button" class="btn btn-success btn-sm forward"   id="forward">FWD</button> 
+      <button type="button" class="btn btn-success btn-sm backward"  id="backward">BWD</button> 
+      <button type="button" class="btn btn-success btn-sm right"     id="right">RGT</button>
       <hr>
-      <button type="button" class="btn btn-success btn-sm turnLeft"       id="turnLeft">LFT</button>
-      <button type="button" class="btn btn-success btn-sm backwardStart"  id="backwardStart">BWD</button> 
-      <button type="button" class="btn btn-success btn-sm turnRight"      id="turnRight">RGT</button>
+      <h5 style="color:green;">Robot Head Movement Controls</h5>
+      <button type="button" class="btn btn-success btn-sm up"    id="up">UP</button> 
+      <button type="button" class="btn btn-success btn-sm down"  id="down">DWN</button>
       <hr>
-      <button type="button" class="btn btn-danger btn-sm halt"            id="halt">HaltAll</button>
+      <button type="button" class="btn btn-danger btn-sm halt"   id="halt">Halt</button>
     </center>
-      <hr>
       <!--Disclaimer-->
-      <center><h5 style="color:red;">Made with Love From Team Optimus, All Rights Reserved</h5></center>
+      <center><h6 style="color:red;">Made with Love From Team Optimus, All Rights Reserved</h6></center>
     <?php } ?>
   </body>
 </html>
