@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- JQuery-->
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
@@ -20,7 +22,7 @@
       Getting Button ids and sending it to gpio.php, where gpio handles the value related to pins bot controls, head movements and other stuff.
     */
       $(document).ready(function(){
-        $(".forward, .backward, .left, .right, .up, .down, .halt").click(function(){
+        $(".forwardStart, .backwardStart, .turnLeft, .turnRight, .moveUp, .moveDown, .halt").click(function(){
           var getId = $(this).attr('id');
           var a     = new XMLHttpRequest();
           a.open("GET", "gpio.php?getID="+getId);
@@ -48,7 +50,7 @@
         $serverAddress = $_SERVER['HTTP_HOST'];
         $ipAddressArray= explode(':',$serverAddress);
         $ipAddressPi   = $ipAddressArray[0]; 
-        $portPi        = 8160;
+        $portPi        = 8081;
         $url           = "http://".$ipAddressPi.":".$portPi."/";
 
       /*
@@ -75,64 +77,40 @@
           print 'you need valid login details to access optimus web stream. ';
           print 'contact optimusDevOps for more details';
         }else{
-          echo 'Hi: ' . '<b>'.$username. ' | '."You're connected from ".'<b>'.$userIp.'</b>';
+          $username = 'optimus';
+          echo '<b>' . 'Hi: ' . '</b>' . '<b>'.$username. ' | '."You're connected from ".'<b>'.$userIp.'</b>';
     ?>
-    <center>
-      <h4 style="color:blue;"">Welcome to Optimus Live Camera Stream</h4>
-    <?php
-      /*
-        Browser details, getting the details for users browser
-      */
-      if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE) {
-        $browser = 'Internet Explorer';
-      }
-      elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox') !== FALSE){
-        $browser = 'Mozilla Firefox';
-      }
-      elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE){
-        $browser = 'Google Chrome';
-      }
-      else{
-        $browser = "Ummm, We dont know which browser youre using";
-      }
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <center><h5 style="color:blue;"">Optimus Live Camera Stream</h5></center>
+            <img class="img-responsive center-block" width = "800" height = '520' src = "<?php echo $url ?>">
+        </div>
+      </div>
+    </div>
 
-      /*
-        Displaying error messages to user if his browser is not firefox and vlc installed.
-      */
-      if($browser!= 'Mozilla Firefox'){
-        print '<h4 style="color:red;">'.'<p>Sorry youre using a browser that stream doesnt work,</p> <p>please switch to Firefox for stream to work, and you must have vlc plugin installed for firefox.</p>'.'</h4>';
-        echo '<h5>' . '<b>In the meantime learn something about raspberry pi, here is a youtube video for you.</b>' . '</h5>';
-    ?>
-      <iframe width="640" height="360"
-        src="https://www.youtube.com/embed/5jA8wYqQLBU">
-      </iframe>
-    <?php 
-      }elseif($browser == 'Mozilla Firefox'){
-    ?>
-      <!-- Vlc plugin for bot camera live stream -->
-      <embed id="vlcEmb" type="application/x-google-vlc-plugin" version="VideoLAN.VLCPlugin.2" autoplay="yes" loop="no" width="640" height="320" target="<?php echo $url; ?>"></embed>
-    <?php 
-      } 
-    ?>
-      </br>
-    </center>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-16">
+          <div class="text-center">
+            <h6 style="color:green;">Robot Controls</h6>
+            <button type="button" class="btn btn-success btn-lg turnLeft"       id="turnLeft">LFT</button>
+            <button type="button" class="btn btn-success btn-lg forwardStart"   id="forwardStart">FWD</button> 
+            <button type="button" class="btn btn-danger  btn-lg halt"            id="halt">HLT</button>
+            <button type="button" class="btn btn-success btn-lg backwardStart"  id="backwardStart">BWD</button> 
+            <button type="button" class="btn btn-success btn-lg turnRight"      id="turnRight">RGT</button>
+            <hr>
+            <h6 style="color:green;">Robot Head Movement Controls</h6>
+            <button type="button" class="btn btn-primary btn-lg moveUp"         id="moveUp">UP</button> 
+            <button type="button" class="btn btn-primary btn-lg moveDown"       id="moveDown">DWN</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Robot Controls, Robot Head Movement Controls, Halt-->
-    <center>
-      <h5 style="color:green;">Robot Controls</h5>
-      <button type="button" class="btn btn-success btn-sm left"      id="left">LFT</button>
-      <button type="button" class="btn btn-success btn-sm forward"   id="forward">FWD</button> 
-      <button type="button" class="btn btn-success btn-sm backward"  id="backward">BWD</button> 
-      <button type="button" class="btn btn-success btn-sm right"     id="right">RGT</button>
-      <hr>
-      <h5 style="color:green;">Robot Head Movement Controls</h5>
-      <button type="button" class="btn btn-success btn-sm up"    id="up">UP</button> 
-      <button type="button" class="btn btn-success btn-sm down"  id="down">DWN</button>
-      <hr>
-      <button type="button" class="btn btn-danger btn-sm halt"   id="halt">Halt</button>
-    </center>
-      <!--Disclaimer-->
-      <center><h6 style="color:red;">Made with Love From Team Optimus, All Rights Reserved</h6></center>
+    <!--Disclaimer-->
+    <hr>
+    <center><h6 style="color:red;">Made with Love From Team Optimus, All Rights Reserved</h6></center>
     <?php } ?>
   </body>
 </html>
