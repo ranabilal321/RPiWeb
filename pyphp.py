@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #have to run 'sudo apt-get install python-smbus'
 #in Terminal to install smbus
+#Importing libraries
 import smbus
 import time
 import os
@@ -9,8 +10,8 @@ import sys
 #Display system info
 print os.uname()
 
+#Setting smBus Object
 bus = smbus.SMBus(1)
-print("hello")
 
 #Setting I2C address of Arduino Slave
 i2c_address = 0x07
@@ -25,9 +26,12 @@ def ConvertStringToBytes(src):
 
 exit = False
 r = str(sys.argv[1])
-print(r)
+
+#Applying Converted String
 bytesToSend = ConvertStringToBytes(r)
 bus.write_i2c_block_data(i2c_address, i2c_cmd, bytesToSend)
+#Delaying
 time.sleep(0.1)
 number = bus.read_byte(i2c_address)
+#End Result
 print('echo: ' + str(number))

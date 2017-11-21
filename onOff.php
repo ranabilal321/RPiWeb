@@ -16,10 +16,10 @@ $command = $_GET['command'];
 if(isset($command) && !empty($command)){
 	if($command == "shutdown"){
 		echo "Shutting Down Raspberry Pi";
-		//echo system("sudo shutdown -h now");
+		system("sudo shutdown -h now");
 	}elseif($command == "reboot"){
 		echo "Rebooting Raspberry Pi";
-		//echo system("sudo reboot");
+		system("sudo reboot");
 	}else{
 		echo json_encode(['response' => 'Invalid Argument, Command must be shutdown or reboot']);
 	}
