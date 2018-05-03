@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 #have to run 'sudo apt-get install python-smbus'
+#have to run 'sudo adduser www-data i2c'
 #in Terminal to install smbus
 #Importing libraries
 import smbus
