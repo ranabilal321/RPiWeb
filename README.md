@@ -5,26 +5,26 @@ OptimusBot WebUI, Live Stream, Bot Controls, Bot Head Movements.
 Follow these instructions in order to get the Bot up and running.
 
 ### Prerequisites
-- XUbuntu For Raspberry Pi
+- XUbuntu For Raspberry Pi [Ubuntu Flavours](https://ubuntu-pi-flavour-maker.org/download)
+
+- Before Installing Packages
 ```
-https://ubuntu-pi-flavour-maker.org/download/
+$ sudo apt-get update
+$ sudo apt-get upgrade
 ```
 - Install Apache Web Server
 ```
-$ sudo apt-get update -y
 $ sudo apt-get install apache2
 $ sudo systemctl start apache2.service
 ```
 - Install PHP
 ```
-$ sudo apt-get install php -y
-$ sudo apt-get install -y php-{bcmath,bz2,intl,gd,mbstring,mcrypt,mysql,zip} && sudo apt-get install libapache2-mod-php  -y
-$ systemctl restart apache2.service
+$ sudo apt-get install php
+$ sudo apt-get install libapache2-mod-php
+$ sudo systemctl restart apache2.service
 ```
 - Install Python Packages
 ```
-$ sudo apt-get update
-$ sudo apt-get upgrade
 $ sudo apt-get install python-pip python-dev
 $ sudo apt-get install python-smbus
 ```
@@ -50,6 +50,18 @@ $ sudo apt-get install git-core
 $ cd var/www/html
 $ git clone https://github.com/ranabilal321/RPiWeb.git
 $ sudo chown -R www-data:www-data /var/www
+```
+### Live Stream Configuration
+- Run the commands below in order to enable live stream
+```
+$ sudo apt-get install motion
+$ sudo nano /etc/motion/motion.conf
+- DAEMON = OFF (change to ON)
+- Webcam_localhost = ON (Change to OFF)
+$ sudo nano /etc/default/motion
+- start_motion_daemon = no (change to yes)
+- Plug the camera in to Pi
+$ sudo service motion start
 ```
 
 ### Additonal
