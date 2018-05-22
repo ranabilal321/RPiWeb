@@ -71,6 +71,17 @@ $ git clone git://git.drogon.net/wiringPi
 $ cd wiringPi
 $ ./build
 ```
+- Modify Arduino code against your hardware, This might not work on your designed hardware
+```
+src/arduino/arduino.ino
+```
+
+### UserConfigs
+- Default Username and Password optimus
+- In case you want to modify the default username and password
+```
+configs/config.json
+```
 
 ### Authors
 - Bilal Faisal
