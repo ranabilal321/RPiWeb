@@ -2,7 +2,7 @@ $(document).ready(function () {
   $(".forward, .backward, .left, .right, .up, .down, .halt").click(function () {
     var command = $(this).attr('id');
     $.ajax({
-      url: "src/libraries/GPIO.php?command=" + command,
+      url: "index.php?commandControl=" + command,
       type: "GET",
       success: function (data) {
         console.log(data)
@@ -16,7 +16,7 @@ $(document).ready(function () {
   $(".shutdown, .reboot").click(function () {
     var command = $(this).attr('id');
     $.ajax({
-      url: "src/libraries/ShutdownAndRestart.php?command=" + command,
+      url: "index.php?commandPower=" + command,
       type: "GET",
       success: function (data) {
         console.log(data)

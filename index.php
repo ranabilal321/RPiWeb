@@ -1,3 +1,21 @@
+<?php
+require_once __DIR__ . "/src/libraries/ClassLoader.php";
+
+$userInformationClient = new AuthUser();
+$controlClient = new GPIOControls();
+$powerClient = new BotPower();
+
+$userInformation = $userInformationClient->index();
+$url = $userInformation['url'];
+$helloMessage = $userInformation['message'];
+
+if (!empty($_GET['commandControl'])) {
+  return $controlClient->index($_GET['commandControl']);
+}
+if (!empty($_GET['commandPower'])) {
+  return $powerClient->index($_GET['commandPower']);
+}
+?>
 <!Doctype html>
 <html>
   <head>
@@ -14,9 +32,9 @@
   </head>
 
   <body>
-    <?php include __DIR__ . '/src/libraries/UserInformation.php';
-    echo $message;
-    ?>
+  <?php
+    echo $helloMessage;
+  ?>
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
