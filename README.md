@@ -42,6 +42,12 @@ $ sudo visudo
 - Add %www-data   ALL=NOPASSWD: /sbin/shutdown, /sbin/reboot
 - So that www-data has SUDO access, This is only if you want to Shutdown Bot from WebUI
 ```
+- Install Composer
+```
+$ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+- Check Composer Version
+$ composer -v
+```
 
 ### Clone
 - Clone the OptimusBot Repo
@@ -50,7 +56,10 @@ $ sudo apt-get install git-core
 $ cd var/www/html
 $ git clone https://github.com/ranabilal321/RPiWeb.git
 $ sudo chown -R www-data:www-data /var/www
+$ cd /var/www/html/RPiWeb
+$ composer install
 ```
+
 ### Live Stream Configuration
 - Run the commands below in order to enable live stream
 ```

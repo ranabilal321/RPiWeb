@@ -1,5 +1,7 @@
 <?php
 
+namespace Optimus\Libraries;
+
 class GPIOControls
 {
     const SCRIPT = 'python I2C.py ';

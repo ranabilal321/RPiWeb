@@ -1,5 +1,9 @@
 <?php
-require_once __DIR__ . "/src/libraries/ClassLoader.php";
+require __DIR__ . "/vendor/autoload.php";
+
+use Optimus\Libraries\AuthUser;
+use Optimus\Libraries\GPIOControls;
+use Optimus\Libraries\BotPower;
 
 $userInformationClient = new AuthUser();
 $controlClient = new GPIOControls();

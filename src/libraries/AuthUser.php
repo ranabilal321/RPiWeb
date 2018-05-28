@@ -1,5 +1,7 @@
 <?php
 
+namespace Optimus\Libraries;
+
 class AuthUser
 {
     const USERNAME = 'optimus';

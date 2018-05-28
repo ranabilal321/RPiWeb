@@ -1,5 +1,7 @@
 <?php
 
+namespace Optimus\Libraries;
+
 class BotPower
 {
     const SHUTDOWN = 'shutdown';

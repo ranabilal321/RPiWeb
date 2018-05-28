@@ -1,0 +1,17 @@
+{
+    "name": "OptimusWebUI",
+    "description": "OptimusWebUI",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bilal Faisal",
+            "email": "bilalfaisal321@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Optimus\\": "src/"
+        }
+    }
+}
